@@ -99,4 +99,15 @@ export class EventBind {
       outValue: this.getOutList().map(item => item.getValue())
     };
   }
+  setValue (value:any) {
+    (value.inValue || []).forEach((item: any) => {
+      var event = this.addIn();
+      event.setValue(item);
+    });
+    (value.outValue || []).forEach((item: any) => {
+      var event = this.addOut();
+      event.setValue(item);
+    });
+    this.save();
+  }
 }

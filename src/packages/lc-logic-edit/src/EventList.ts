@@ -46,5 +46,13 @@ export class EventList {
   clear() {
     this.list.clear();
   }
-  save() {}
+  save(val:any) {
+    val.forEach((item: any) => {
+      var event = this.add({
+        name: "",
+        type: "EventDispatcher"
+      });
+      event.setValue(item);
+    });
+  }
 }

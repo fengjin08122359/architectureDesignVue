@@ -28,9 +28,9 @@ export class Style {
     }
   }
   move(x: number, y: number) {
-    var left = convertPx(this.target.style.left) + x;
-    var top = convertPx(this.target.style.top) + y;
-    this.target.style.setKeyValue("left", setPx(left));
-    this.target.style.setKeyValue("top", setPx(top));
+    var left = convertPx(this.left || 0) + x;
+    var top = convertPx(this.top || 0) + y;
+    this.setKeyValue("left", setPx(left));
+    this.setKeyValue("top", setPx(top));
   }
 }

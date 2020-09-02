@@ -95,5 +95,15 @@ export class ApiList {
   clear() {
     this.list.clear();
   }
-  save(val: any) {}
+  save(val: any) {
+    val.forEach((item: any) => {
+      var api = this.add({
+        config: "get",
+        name: "",
+        getParam: [],
+        postParam: []
+      });
+      api.setValue(item);
+    });
+  }
 }

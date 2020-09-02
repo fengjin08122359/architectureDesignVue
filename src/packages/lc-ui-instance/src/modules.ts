@@ -510,28 +510,28 @@ export class MergeComponent extends ComponentMultipleUI {
   }
 }
 
-interface InstanceModulePayload {
+export interface InstanceModulePayload {
   key: string;
   label: string;
   module: typeof ModuleUI;
 }
 
-export let instanceModules: InstanceModulePayload[] = [
-  {
-    key: "1",
-    label: "基本容器",
-    module: BasicContainerUI
-  },
-  {
-    key: "2",
-    label: "选项卡",
-    module: CardContainerUI
-  },
-  {
-    key: "3",
-    label: "弹窗",
-    module: DialogContainerUI
-  },
+export let container: InstanceModulePayload[] = [{
+  key: "1",
+  label: "基本容器",
+  module: BasicContainerUI
+},
+{
+  key: "2",
+  label: "选项卡",
+  module: CardContainerUI
+},
+{
+  key: "3",
+  label: "弹窗",
+  module: DialogContainerUI
+}]
+export let basic: InstanceModulePayload[] = [
   {
     key: "4",
     label: "按钮",
@@ -581,7 +581,8 @@ export let instanceModules: InstanceModulePayload[] = [
     key: "13",
     label: "下拉框",
     module: MulSelectComponent
-  },
+  }]
+export let merge: InstanceModulePayload[] = [
   {
     key: "15",
     label: "柱状折现图",
@@ -601,5 +602,6 @@ export let instanceModules: InstanceModulePayload[] = [
     key: "18",
     label: "嵌入式页面",
     module: IframeComponent
-  }
-];
+  }]
+
+export let instanceModules: InstanceModulePayload[] = container.concat(basic, merge)

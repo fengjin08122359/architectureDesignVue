@@ -11,24 +11,28 @@ export {
   editorInstance,
   setEditorInstance,
   generateModule,
+  saveFromConfig,
+  saveFromEdit,
+  restoreFromEdit,
+  restoreFromConfig,
+} from "@mikefeng110808/lc-ui-design";
+export {
+ModuleGenrate,
+ApiGenerate,
+EventGenerate,
+InEventGenerate,
+OutEventGenerate,
+PropGeneratePiece,
+GeneratePiece
+} from "@mikefeng110808/lc-ui-generator";
+export {
   apiList,
   eventList,
   addApi,
   removeApi,
   addEvent,
   removeEvent,
-  saveFromConfig,
-  saveFromEdit,
-  restoreFromEdit,
-  restoreFromConfig,
-  ModuleGenrate,
-  ApiGenerate,
-  EventGenerate,
-  InEventGenerate,
-  OutEventGenerate,
-  PropGeneratePiece,
-  GeneratePiece
-} from "@mikefeng110808/lc-ui-design";
+} from '@mikefeng110808/lc-logic-edit'
 
 export {
   setPx,

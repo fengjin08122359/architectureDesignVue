@@ -1,14 +1,14 @@
 <template>
     <div draggable="true"  @dragstart="dragModule">
-        {{target.name}}
+        {{target.label}}
     </div>
 </template>
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import {ModuleTargetPayload, setCurrentModule} from '../sdk'
+import {setCurrentModule} from '../sdk'
 @Component
 export default class DragCol extends Vue {
-  @Prop() private target!: ModuleTargetPayload;
+  @Prop() private target!: any;
 
   dragModule(e) {
     e.dataTransfer.effectAllowed = 'all'

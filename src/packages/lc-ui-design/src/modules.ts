@@ -1,40 +1,15 @@
-import { basic, container, merge } from "./constants/module";
-import { Props } from "./constants";
+import { basic, container, merge, InstanceModulePayload } from "@mikefeng110808/lc-ui-instance";
 
-export let basicModules: Props[] = [];
-export let continerModules: Props[] = [];
-export let mergeModules: Props[] = [];
 
-var addBasic = (props: Props) => {
-  basicModules.push(props);
-};
-var addContiner = (props: Props) => {
-  continerModules.push(props);
-};
-var addMerge = (props: Props) => {
-  mergeModules.push(props);
-};
+export let basicModules: InstanceModulePayload[] = [];
+export let continerModules: InstanceModulePayload[] = [];
+export let mergeModules: InstanceModulePayload[] = [];
+basicModules = basic.concat()
+continerModules = container.concat()
+mergeModules = merge.concat()
 
-basic.forEach((item: Props) => {
-  addBasic(item);
-});
-
-container.forEach((item: Props) => {
-  addContiner(item);
-});
-
-merge.forEach((item: Props) => {
-  addMerge(item);
-});
-
-export let generateModule = (props: Props) => {
-  let target = new props.UI();
-  target.typeId = props.id;
-  target.setSelfProp(new props.selfProp());
-  var style = target.selfProp.getStyle();
-  for (let [key, value] of Object.entries(style)) {
-    target.style[key] = value;
-  }
-  target.selfProp.setParam(props.params);
+export let generateModule = (props: InstanceModulePayload) => {
+  let target = new props.module();
+  target.resetStyle()
   return target;
 };

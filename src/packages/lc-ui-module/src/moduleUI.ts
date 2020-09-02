@@ -31,19 +31,27 @@ export class ModuleUI extends UI {
     return {
       typeId: this.typeId,
       id: this.id,
+      name: this.name,
       insertable: this.insertable,
       editable: this.editable,
       moduleIdList: this.moduleIdList,
-      eventBind: {
-        value: this.eventBind.getValue()
-      },
-      selfProp: {
-        value: this.selfProp.getValue()
-      },
-      style: {
-        value: this.style.getValue()
-      }
+      eventBind: this.eventBind.getValue(),
+      selfProp: this.selfProp.getAllValue(),
+      style: this.style.getValue()
     };
+  }
+  setValue (data: any) {
+    this.typeId = data.typeId
+    this.id = data.id
+    this.name = data.name
+    this.insertable = data.insertable
+    this.editable = data.editable
+    this.moduleIdList = data.moduleIdList
+    this.eventBind.setValue(data.eventBind)
+    this.selfProp.setAllValue(data.selfProp)
+    this.style.clear()
+    this.style.setValue(data.style)
+
   }
   setDom(dom: HTMLElement) {
     this.dom = dom;
@@ -59,6 +67,11 @@ export class ModuleUI extends UI {
   }
   removeModuleId(moduleId: string) {
     this.moduleIdList = this.moduleIdList.filter(item => item != moduleId);
+  }
+  resetStyle () {
+    var style = this.selfProp.getStyle();
+    this.style.clear()
+    this.style.setValue(style)
   }
 }
 

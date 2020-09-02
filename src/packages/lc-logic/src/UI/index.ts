@@ -59,4 +59,14 @@ export class SelfProp {
   setValue(value: any) {
     this.opt = value || {};
   }
+  getAllValue () {
+    return {
+      params: this.params.map(item => item.rawData),
+      opt: this.opt,
+    }
+  }
+  setAllValue (value:any) {
+    this.setParam(value.params)
+    this.setValue(value.opt)
+  }
 }

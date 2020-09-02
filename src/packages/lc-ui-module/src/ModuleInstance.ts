@@ -54,5 +54,14 @@ export class ModuleInstance extends UIInstance {
   getChildren(): ModuleInstance[] {
     return this.children.filter(item => this.target.filterChildren(item));
   }
-  setValue(data: any) {}
+  setValue(data: any) {
+    this.moduleId = data.moduleId
+    this.canDrag = data.canDrag 
+    this.target.setValue(data.target)
+    this.children = (data.children || []).map((item: any) => {
+      var module = new ModuleInstance() 
+      module.setValue(item)
+      return module;
+    });
+  }
 }

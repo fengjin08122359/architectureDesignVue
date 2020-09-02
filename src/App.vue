@@ -1,10 +1,11 @@
 <template>
   <div class="app">
     <div class="nav">
-      <router-link to="/Home">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/html-lc-edit">html-lc-edit</router-link> |
+      <router-link to="/html-lc-render">html-lc-render</router-link> |
+      <router-link to="/html-lc-render">html-lc-comp</router-link>
     </div>
-    <router-view />
+    <router-view class='router' />
   </div>
 </template>
 
@@ -28,5 +29,13 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+.router{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 90px;
+  overflow: auto;
 }
 </style>
