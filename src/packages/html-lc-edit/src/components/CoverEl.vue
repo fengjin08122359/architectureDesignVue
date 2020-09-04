@@ -26,7 +26,10 @@ import {
   setPx,
   convertPx,
   elementsFromPoint,
-  generateModule
+  generateModule,
+  comboEl,
+  generateCombo,
+  clearComboEl
 } from '../sdk'
 import Module from './Module.vue'
 import ModuleConfig from "../components/ModuleConfig.vue";
@@ -69,10 +72,18 @@ export default class CoverEl extends Vue {
   }
 
   dropHandler (e) {
+    let zoom = this.zoom
+    let current
+    if (comboEl) {
+      console.log(comboEl)
+      current = this.instance.combiInstance(generateCombo(comboEl))
+      clearComboEl()
+    }
     if (currentEl) {
-      let zoom = this.zoom
-      let current = this.instance.combi(generateModule(currentEl))
+      current = this.instance.combi(generateModule(currentEl))
       clearCurrentEl()
+    }
+    if (current) {
       var mainContainer = this.$refs.bgTarget.$el
       let {width='auto', height='auto'} = current.target.selfProp.getStyle()
       width = convertPx(width)

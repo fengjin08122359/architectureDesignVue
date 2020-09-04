@@ -92,6 +92,18 @@ class SingleUI {
     this.canRender = false;
   }
   /**
+   *getRawData
+   * @memberof SingleUIPayload
+   */
+  getRawData (): SingleUIPayload{
+    return {
+      ...this.rawData,
+      key: this.key,
+      type: this.type,
+      props: this.props
+    }
+  }
+  /**
    *dataFind
    * @param {string | number} data
    * @memberof SingleUI

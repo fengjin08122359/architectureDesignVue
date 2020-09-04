@@ -18,6 +18,15 @@
         <DragCol :target="item"></DragCol>
       </el-col>
     </el-row>
+    <div class="toolTitle">自定义组件（拖拽操作）</div>
+    <el-row>
+      <el-col :span="24" v-for="(item, index) in combList.dataList" :key="index">
+        <div draggable="true"  @dragstart="(e) => dragModule(e, item)">
+            {{item.value.name}}
+        </div>
+      </el-col>
+    </el-row>
+
     <el-switch v-model="editorInstance.isRelative"></el-switch>
     <el-color-picker v-model="editorInstance.borderColor"></el-color-picker>
     <el-row>
@@ -59,7 +68,11 @@ import {
   saveFromConfig,
   saveFromEdit,
   restoreFromEdit,
-  restoreFromConfig
+  restoreFromConfig,
+  CombList, 
+  combList,
+  clearCurrentEl,
+  setComboModule
 } from "../sdk";
 import DragCol from "./DragCol.vue";
 import ApiList from "./ToolBar/ApiList.vue";
@@ -75,8 +88,16 @@ export default class ToolBar extends Vue {
   saveFromEdit = saveFromEdit;
   restoreFromEdit = restoreFromEdit
   restoreFromConfig = restoreFromConfig
+  combList:CombList = combList
   visible = false
   activeTab = "ApiList"
+  dragModule(e, target) {
+    e.dataTransfer.effectAllowed = 'all'
+    e.dataTransfer.dropEffect = 'copy'
+    console.log(target)
+    setComboModule(target)
+    clearCurrentEl()
+  }
 }
 </script>
 

@@ -8,6 +8,10 @@ export {
   containerModules,
   currentEl,
   clearCurrentEl,
+  comboEl,
+  setComboModule,
+  clearComboEl,
+  generateCombo,
   editorInstance,
   setEditorInstance,
   generateModule,
@@ -41,3 +45,8 @@ export {
   styleOptions,
   eventOptions
 } from "@mikefeng110808/utils";
+export { 
+  combList, 
+  CombList,
+  ComboModuleInstance
+} from "@mikefeng110808/lc-logic-comp";

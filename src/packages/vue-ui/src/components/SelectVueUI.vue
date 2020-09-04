@@ -1,6 +1,8 @@
 <template>
 <div class='selectVue' v-show='target.props.show'>
-  <div>{{target.props.label}}</div>
+  <div>参数类型: 单选</div>
+  <div>标题: {{target.props.label}}</div>
+  <div>key: {{target.key}}</div>
   <div v-if='target.props.configVisible'>
     <span>选项:</span>
     <el-row >

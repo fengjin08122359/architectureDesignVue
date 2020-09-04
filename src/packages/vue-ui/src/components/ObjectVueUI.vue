@@ -1,6 +1,8 @@
 <template>
   <div class='objectVue' v-show='target.props.show'>
-    <div>{{target.props.label}}</div>
+  <div>参数类型: 对象</div>
+  <div>标题: {{target.props.label}}</div>
+  <div>key: {{target.key}}</div>
     <el-row>
       <el-col v-for="(item,index) in target.props.objectArray" :key="index">
         <el-col :span='10'>

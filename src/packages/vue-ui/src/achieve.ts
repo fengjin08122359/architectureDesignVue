@@ -15,19 +15,36 @@ Vue.use(ElementUI);
 export class InputVueUI extends VueUI {
   constructor(params: SingleUIPayload) {
     super(params);
+    this.setValue(this.value)
     this.renderComponent = InputVueUIComp;
+  }
+  setValue(val: any) {
+    if (typeof val == 'number' || typeof val == 'string' ) {
+      this.value = val.toString()
+    } else if (typeof val == 'boolean' ) {
+      this.value = val.toString()
+    } else if (typeof val == 'undefined') {
+      this.value = ''
+    } else if (typeof val == 'object') {
+      if (Array.isArray(val)) {
+        this.value = val.join(',')
+      } else {
+        try {
+          this.value =  JSON.stringify(val)
+        } catch (error) {
+          this.value = ''
+        }
+      }
+    } else {
+      this.value = ''
+    }
   }
 }
 
 export class ArrayVueUI extends VueUI {
   constructor(params: SingleUIPayload) {
     super(params);
-    if (!Array.isArray(this.value)) {
-      this.value = [];
-    }
-    if (this.value.length == 0) {
-      this.addCol();
-    }
+    this.changeData(this.value)
     this.renderComponent = ArrayVueUIComp;
   }
   addCol() {
@@ -38,15 +55,65 @@ export class ArrayVueUI extends VueUI {
   delCol(index: number) {
     this.value.splice(index, 1);
   }
+  changeData(val:any) {
+    if (typeof val == 'number' || typeof val == 'string' ) {
+      this.value = [{
+        value: val.toString()
+      }]
+    } else if (typeof val == 'boolean' ) {
+      this.value = [{
+        value: val.toString()
+      }]
+    } else if (typeof val == 'undefined') {
+      this.value = []
+    } else if (typeof val == 'object') {
+      if (Array.isArray(val)) {
+        if (val.length > 0) {
+          this.value = (val || []).filter(item => item).map(item => {
+            return {
+              value: item
+            }
+          })
+        }
+      } else {
+        this.value = []
+      }
+    } else {
+      this.value = []
+    }
+    if (this.value.length == 0) {
+      this.addCol();
+    }
+  }
   getValue(): any[] {
     return this.value.map((item: any) => item.value);
   }
-  setValue(val: any[]) {
-    this.value = (val || []).map((item: any) => {
-      return { value: item };
-    });
-    if (!Array.isArray(this.value)) {
-      this.value = [];
+  setValue(val: any) {
+    
+    if (typeof val == 'number' || typeof val == 'string' ) {
+      this.value = [{
+        value: val.toString()
+      }]
+    } else if (typeof val == 'boolean' ) {
+      this.value = [{
+        value: val.toString()
+      }]
+    } else if (typeof val == 'undefined') {
+      this.value = []
+    } else if (typeof val == 'object') {
+      if (Array.isArray(val)) {
+        if (val.length > 0) {
+          this.value = (val || []).filter(item => item).map(item => {
+            return {
+              value: item
+            }
+          })
+        }
+      } else {
+        this.value = []
+      }
+    } else {
+      this.value = []
     }
     if (this.value.length == 0) {
       this.addCol();
@@ -62,7 +129,7 @@ interface ObjectArrayPayload {
 export class ObjectVueUI extends VueUI {
   constructor(params: SingleUIPayload) {
     super(params);
-    this.props.objectArray = this.props.objectArray || [];
+    this.props.objectArray = params.props ? params.props.objectArray || [] : [];
     this.setValue(this.value || {});
     if (this.props.objectArray.length == 0) {
       this.addCol();
@@ -87,15 +154,32 @@ export class ObjectVueUI extends VueUI {
       {}
     );
   }
-  setValue(val: Object) {
-    this.value = val || {};
-    this.props.objectArray = [];
-    for (let [key, value] of Object.entries(this.value)) {
-      this.props.objectArray.push({
-        key,
-        value
-      });
+  setValue(val: any) {
+    if (typeof val == 'number' || typeof val == 'string' || typeof val == 'boolean') {
+      this.value = {}
+      this.props.objectArray = []
+    } else if (typeof val == 'undefined') {
+      this.value = {}
+      this.props.objectArray = []
+    } else if (typeof val == 'object') {
+      if (Array.isArray(val)) {
+        this.value = {}
+        this.props.objectArray = []
+      } else {
+        this.value = val || {};
+        this.props.objectArray = [];
+        for (let [key, value] of Object.entries(this.value)) {
+          this.props.objectArray.push({
+            key,
+            value
+          });
+        }
+      }
+    } else {
+      this.value = {}
+      this.props.objectArray = []
     }
+    
     if (this.props.objectArray.length == 0) {
       this.addCol();
     }
@@ -105,9 +189,9 @@ export class ObjectVueUI extends VueUI {
 export class MulSelectVueUI extends VueUI {
   constructor(params: SingleUIPayload) {
     super(params);
-    this.props.configVisible = this.props.configVisible || [];
-    this.props.optionsArray = this.props.optionsArray || [];
-    this.setValue(this.value || "");
+    this.props.configVisible = params.props ? params.props.configVisible || [] : [];
+    this.props.optionsArray = params.props ? params.props.optionsArray || [] : [];
+    this.setValue(this.value || []);
     if (this.props.optionsArray.length == 0) {
       this.addCol();
     }
@@ -122,13 +206,33 @@ export class MulSelectVueUI extends VueUI {
   delCol(index: number) {
     this.props.optionsArray.splice(index, 1);
   }
+  
+  setValue(val: any) {
+    if (typeof val == 'number' || typeof val == 'string' ) {
+      this.value = [val.toString()]
+    } else if (typeof val == 'boolean' ) {
+      this.value = [val.toString()]
+    } else if (typeof val == 'undefined') {
+      this.value = []
+    } else if (typeof val == 'object') {
+      if (Array.isArray(val)) {
+        this.value = val
+      } else {
+        this.value = []
+
+      }
+    } else {
+      this.value = []
+    }
+  }
+
 }
 export class SelectVueUI extends VueUI {
   constructor(params: SingleUIPayload) {
     super(params);
-    this.props.configVisible = this.props.configVisible || [];
-    this.props.optionsArray = this.props.optionsArray || [];
-    this.setValue(this.value || []);
+    this.props.configVisible = params.props ? params.props.configVisible || [] : [];
+    this.props.optionsArray = params.props ? params.props.optionsArray || [] : [];
+    this.setValue(this.value || '');
     if (this.props.optionsArray.length == 0) {
       this.addCol();
     }
@@ -143,19 +247,75 @@ export class SelectVueUI extends VueUI {
   delCol(index: number) {
     this.props.optionsArray.splice(index, 1);
   }
+  
+  setValue(val: any) {
+    if (typeof val == 'number' || typeof val == 'string' ) {
+      this.value = val.toString()
+    } else if (typeof val == 'boolean' ) {
+      this.value = val.toString()
+    } else if (typeof val == 'undefined') {
+      this.value = ''
+    } else if (typeof val == 'object') {
+      if (Array.isArray(val)) {
+        this.value = ''
+      } else {
+        this.value = ''
+      }
+    } else {
+      this.value = ''
+    }
+  }
 }
 export class NumberVueUI extends VueUI {
   constructor(params: SingleUIPayload) {
     super(params);
+    this.setValue(this.value)
     this.renderComponent = NumberVueUIComp;
+  }
+  setValue(val: any) {
+    if (typeof val == 'number' || typeof val == 'string' ) {
+      this.value = Number(val)
+    } else if (typeof val == 'boolean' ) {
+      this.value = Number(val)
+    } else if (typeof val == 'undefined') {
+      this.value = 0
+    } else if (typeof val == 'object') {
+      if (Array.isArray(val)) {
+        this.value = 0
+      } else {
+        this.value = 0
+      }
+    } else {
+      this.value = 0
+    }
+    if (isNaN(this.value)) {
+      this.value = 0
+    }
   }
 }
 
 export class BooleanVueUI extends VueUI {
   constructor(params: SingleUIPayload) {
     super(params);
-    this.value = !!this.value;
+    this.setValue(this.value)
     this.renderComponent = BooleanVueUIComp;
+  }
+  setValue(val: any) {
+    if (typeof val == 'number' || typeof val == 'string' ) {
+      this.value = !!val
+    } else if (typeof val == 'boolean' ) {
+      this.value = val
+    } else if (typeof val == 'undefined') {
+      this.value = false
+    } else if (typeof val == 'object') {
+      if (Array.isArray(val)) {
+        this.value = false
+      } else {
+        this.value = false
+      }
+    } else {
+      this.value = false
+    }
   }
 }
 
@@ -167,6 +327,7 @@ export class SimulateVueUI extends VueUI {
     this.simulateValue = "";
     this.error = "";
     this.simulate();
+    this.setValue(this.value)
     this.renderComponent = SimulateVueUIComp;
   }
   getValue() {

@@ -1,5 +1,8 @@
 <template>
   <div class='SimulateVue' v-show='target.props.show'>
+  <div>参数类型: 模拟框</div>
+  <div>标题: {{target.props.label}}</div>
+  <div>key: {{target.key}}</div>
     <el-input
       type="textarea"
       :rows="5"

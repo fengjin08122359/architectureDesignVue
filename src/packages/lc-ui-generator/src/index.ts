@@ -15,9 +15,11 @@ import {
   MulSelectVueUI as MulSelectCompVueUI,
   IframeVueUI,
   TableVueUI,
-  TableDataConfigVueUI
+  TableDataConfigVueUI,
+  
 } from "@mikefeng110808/lc-ui-components";
 
+import { ComboVueUI } from "@mikefeng110808/lc-logic-comp";
 import { ModuleUI } from "@mikefeng110808/lc-ui-module";
 import {
   apiParams,
@@ -167,6 +169,10 @@ export class ModuleGenrate extends GeneratePiece {
     this.add({
       key: "18",
       value: IframeVueUI
+    });
+    this.uiList.addTemplate({
+      key: "",
+      value: ComboVueUI
     });
   }
   setTarget(ui: ModuleUI) {

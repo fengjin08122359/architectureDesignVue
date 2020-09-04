@@ -1,6 +1,8 @@
 <template>
   <div class='arrayVue' v-show='target.props.show'>
-    <div>{{target.props.label}}</div>
+    <div>参数类型: 数组</div>
+    <div>标题: {{target.props.label}}</div>
+    <div>key: {{target.key}}</div>
     <el-row>
       <el-col v-for="(item,index) in target.value" :key="index">
         <el-input v-model="item.value" >

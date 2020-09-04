@@ -1,9 +1,9 @@
-import { ContainerSelfProp, BasicSelfProp, MergeSelfProp } from "./selfProp";
+import { ContainerSelfProp, BasicSelfProp, MergeSelfProp, ComboSelfProp } from "./selfProp";
 import {
   ContainerUI,
   ComponentSingleUI,
   ModuleUI,
-  ComponentMultipleUI
+  ComponentMultipleUI,
 } from "@mikefeng110808/lc-ui-module";
 
 export class BasicContainerUI extends ContainerUI {
@@ -155,9 +155,10 @@ export class NumberComponent extends ComponentSingleUI {
     };
     this.selfProp.setParam([
       {
-        type: "input",
+        type: "number",
         key: "value",
-        props: { label: "值" }
+        props: { label: "值" },
+        value: 0
       },
       {
         type: "input",
@@ -501,12 +502,18 @@ export class IframeComponent extends ComponentSingleUI {
   }
 }
 
-export class MergeComponent extends ComponentMultipleUI {
+export class ComboComponent extends ComponentMultipleUI {
   typeId = "";
-  constructor(typeId: string) {
+  selfProp: ComboSelfProp
+  constructor() {
     super();
-    this.selfProp = new MergeSelfProp();
-    this.typeId = typeId;
+    this.selfProp = new ComboSelfProp();
+
+  }
+  resetOpt (target:any) {
+    for (const [key,value] of Object.entries(this.selfProp.opt)) {
+      target[key] = value
+    }
   }
 }
 

@@ -1,5 +1,5 @@
-import { ModuleInstance } from "@mikefeng110808/lc-ui-module";
+import { AllModuleInstance } from "./save";
 import { restoreFromEdit } from "./save";
 
-export let compilerInstance: ModuleInstance = new ModuleInstance();
+export let compilerInstance: AllModuleInstance = new AllModuleInstance();
 restoreFromEdit(compilerInstance)

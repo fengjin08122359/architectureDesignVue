@@ -1,34 +1,42 @@
-import { SingleUIPayload } from "@mikefeng110808/logic";
-import { VueUI } from "@mikefeng110808/vue-ui";
 import { VueRenderPayload } from "@mikefeng110808/vue-instance";
-import DoubleTitleComp from "../template/doubleTitle.vue";
+import { ModuleInstance } from "@mikefeng110808/lc-ui-module";
+import { ComboComponent } from "@mikefeng110808/lc-ui-instance";
+import ComboVue from '../template/ComboVue';
 
-export class MergeVueUI extends VueUI {
-  [x: string]: any;
-  renderTemplate: string;
-  constructor(params: SingleUIPayload) {
-    super(params);
-    this.renderTemplate = params.props
-      ? params.props.renderTemplate
-      : "<div></div>";
+export class ComboModuleInstance extends ModuleInstance{
+  target: ComboComponent
+  constructor () {
+    super()
+    this.target = new ComboComponent()
   }
-  staticRender(renderTarget: VueRenderPayload) {
-    return this.render(renderTarget, {
-      needRender: false
-    });
+  getRenderTemplate () {
+    return this.target.selfProp.renderTemplate
   }
-  normalRender(renderTarget: VueRenderPayload) {
-    return this.render(renderTarget, {
-      needRender: true
-    });
+  addSelfPropParam () {
+    this.target.selfProp.addParam({
+      key: '',
+      value: '',
+      type:'input'
+    })
+  }
+  removeSelfPropParam (key:string) {
+    this.target.selfProp.removeParam(key)
+  }
+  resetOpt (target:any) {
+    for (const [key,value] of Object.entries(this.target.selfProp.opt)) {
+      target[key] = value
+    }
+  }
+  render (render: VueRenderPayload, props: any = {isCompiler:true}) {
+    return render.createElement(
+      ComboVue, // 标签名称
+      {
+        ...render.context,
+        props: { target: this.target, ...props }
+      },
+      [render.vueRoot.$slots.default]
+    );
   }
 }
 
-export class DoubleTitle extends MergeVueUI {
-  constructor(params: SingleUIPayload) {
-    super(params);
-    this.renderComponent = DoubleTitleComp;
-    this.props.title1 = params.props ? params.props.title1 : "";
-    this.props.title2 = params.props ? params.props.title2 : "";
-  }
-}
+export let testCombo = new ComboModuleInstance()

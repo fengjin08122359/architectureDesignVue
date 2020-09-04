@@ -1,9 +1,10 @@
 <template>
-
   <div class='inputVue' v-show='target.props.show'>
+    <div>参数类型: 字符串</div>
+    <div>标题: {{target.props.label}}</div>
+    <div>key: {{target.key}}</div>
     <el-input v-model="target.value" :disabled='target.props.disabled' clearable :type='target.props.inputType'>
       <template slot='append' v-if='target.props.append'>{{target.props.append}}</template>
-      <template slot="prepend" v-if='target.props.label'>{{target.props.label}}</template>
     </el-input>
   </div>
 </template>

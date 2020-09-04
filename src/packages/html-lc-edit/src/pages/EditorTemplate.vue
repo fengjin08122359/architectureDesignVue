@@ -24,6 +24,7 @@ export default class EditorTemplate extends Vue {
   bottom:0;
   top:0;
   overflow: hidden;
+  background:#fff;
   .ToolBar{
     position: absolute;
     left:0;

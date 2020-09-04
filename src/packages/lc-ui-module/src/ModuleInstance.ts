@@ -24,6 +24,11 @@ export class ModuleInstance extends UIInstance {
     this.target.addModuleId(module.moduleId);
     return module;
   }
+  combiInstance (module:ModuleInstance) {
+    this.children.push(module);
+    this.target.addModuleId(module.moduleId);
+    return module;
+  }
   unCombi(moduleId: string) {
     var module = this.findContainUI(this, moduleId);
     console.log(module);

@@ -16,6 +16,9 @@ export class UIInstance implements UIInstancePayload {
     this.target = new UI();
     this.canDrag = true;
   }
+  initModuleId () {
+    this.moduleId = gennerateUUID();
+  }
   canDragFilter() {
     return (
       this.canDrag &&

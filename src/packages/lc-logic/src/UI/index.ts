@@ -47,21 +47,26 @@ export class SelfProp {
     this.resetOpt();
   }
   resetOpt() {
+    var opt: any = {};
     this.params.forEach((item: SingleUI) => {
-      var opt: any = {};
       opt[item.getKey()] = item.getValue();
-      this.opt = opt;
     });
+    this.opt = opt;
   }
   getValue(): any {
     return this.opt;
   }
   setValue(value: any) {
     this.opt = value || {};
+    this.params.forEach(item => {
+      if (this.opt[item.key]) {
+        item.setValue(this.opt[item.key])
+      }
+    })
   }
   getAllValue () {
     return {
-      params: this.params.map(item => item.rawData),
+      params: this.params.map(item => item.getRawData()),
       opt: this.opt,
     }
   }

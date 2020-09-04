@@ -1,8 +1,8 @@
-import { ModuleInstance } from "@mikefeng110808/lc-ui-module";
+import { AllModuleInstance } from "./save";
 
-export let currentEl:ModuleInstance | null = null;
+export let currentEl:AllModuleInstance | null = null;
 
-export let setCurrentModule = (target: ModuleInstance) => {
+export let setCurrentModule = (target: AllModuleInstance) => {
     currentEl = target
 }
 
@@ -11,7 +11,7 @@ export let clearCurrentEl = () =>{
 }
 
 class EditorInstance {
-    active?:ModuleInstance
+    active?:AllModuleInstance
     isRelative: boolean
     borderColor: string
     constructor () {
@@ -19,7 +19,7 @@ class EditorInstance {
         this.isRelative = true
         this.borderColor = '#bdbdbd'
     }
-    setActive(instance: ModuleInstance){
+    setActive(instance: AllModuleInstance){
         this.active = instance
     }
     deleteActive () {
@@ -32,11 +32,11 @@ class EditorInstance {
 export let editorInstance = new EditorInstance();
 
 
-export let setEditorInstance = (instance: ModuleInstance) => {
+export let setEditorInstance = (instance: AllModuleInstance) => {
     editorInstance.setActive(instance)
 }
 
-export let containerModules: ModuleInstance = new ModuleInstance()
+export let containerModules: AllModuleInstance = new AllModuleInstance()
 
 containerModules.canDrag = false
 containerModules.target.style.width = "100%"

@@ -61,8 +61,57 @@ class EventListStore {
   }
 }
 
+
+class CompListStore {
+  constructor () {
+    
+  }
+  setData (value:any, id:string = '') {
+    if (id != '') {
+      var store:any = storage.get('CompListStore')
+      if (store) {
+        var storeArray = store.split(',')
+        storeArray = storeArray.filter((item:any) => item != id)
+        storeArray.push(id)
+        storage.set('CompListStore', storeArray.join(','))
+      } else {
+        storage.set('CompListStore', [id].join(','))
+      }
+      storage.set('CompListStore'+id, value)
+    }
+  }
+  getData (id:string = '') {
+    if (id == '') {
+      var store:any = storage.get('CompListStore')
+      if (store) {
+        var storeArray = store.split(',')
+        return storeArray.map((item:any) =>{
+          return {
+            key: item,
+            value: storage.get('CompListStore'+item)
+          }
+        })
+      }
+    } else {
+      return storage.get('CompListStore'+id)
+    }
+  }
+  removeData (id:string) {
+    var store:any = storage.get('CompListStore')
+    if (store) {
+      var storeArray = store.split(',')
+      storeArray = storeArray.filter((item:any) => item != id)
+      storage.set('CompListStore', storeArray.join(','))
+    }
+    storage.remove('CompListStore'+id)
+  }
+}
+
+
+
 export let apiStore = new ApiStore()
 export let componentStore = new ComponentStore()
 export let apiListStore = new ApiListStore()
 export let eventListStore = new EventListStore()
 export let pageStore = new PageStore()
+export let compListStore = new CompListStore()

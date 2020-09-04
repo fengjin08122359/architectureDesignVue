@@ -4,7 +4,7 @@ class TextareaUI extends SingleUI {
   constructor(params: SingleUIPayload) {
     super(params);
     this.type = "textarea";
-    this.value = this.rawData.value || "";
+    this.value = this.getRawData().value || "";
   }
   render() {
     if (this.getCanRender()) {
