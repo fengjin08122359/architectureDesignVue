@@ -50,3 +50,11 @@ export {
   CombList,
   ComboModuleInstance
 } from "@mikefeng110808/lc-logic-comp";
+
+export { 
+  SystemIn,
+  InParamPayload,
+  inParams
+} from "@mikefeng110808/lc-logic-in-out";
+
+export {SingleUI} from '@mikefeng110808/logic'

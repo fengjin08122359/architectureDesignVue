@@ -20,9 +20,8 @@ import IframeVueUIComponent from "./components/IframeVueUI.vue";
 import TableVueUIComponent from "./components/TableVueUI.vue";
 import TableDataConfigVueUIComponent from "./components/TableDataConfigVueUI.vue";
 
-import { apiList, eventList } from "@mikefeng110808/lc-ui-design";
 import { ModuleUI } from "@mikefeng110808/lc-ui-module";
-import { ApiList, EventList } from "@mikefeng110808/lc-ui-generator";
+import { apiList, eventList, ApiList, EventList } from "@mikefeng110808/lc-logic-edit";
 
 Vue.use(ElementUI);
 export class EventListVueUI extends VueUI {

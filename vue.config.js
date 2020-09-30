@@ -39,7 +39,7 @@ module.exports = {
   },
   runtimeCompiler: true,
   devServer: {
-    port: "8080"
+    port: "8082"
     // "proxy": {
     //   "/any800/": {
     //     "target": "http://jk.demo.xiaoi.net",
@@ -47,5 +47,4 @@ module.exports = {
     //   }
     // }
   },
-  lintOnSave: true
 };

@@ -3,7 +3,9 @@
     <div class="nav">
       <router-link to="/html-lc-edit">html-lc-edit</router-link> |
       <router-link to="/html-lc-render">html-lc-render</router-link> |
-      <router-link to="/html-lc-comp">html-lc-comp</router-link>
+      <router-link to="/html-lc-comp">html-lc-comp</router-link>|
+      <router-link to="/html-lc-extend-logic">html-lc-extend-logic</router-link>
+
     </div>
     <router-view class='router' />
   </div>

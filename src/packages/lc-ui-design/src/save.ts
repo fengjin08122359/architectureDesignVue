@@ -3,9 +3,10 @@ import {
   ModuleInstance,
 } from "@mikefeng110808/lc-ui-module";
 
-import { pageStore, apiListStore, eventListStore } from "@mikefeng110808/lc-logic-data-manage";
+import { pageStore, apiListStore, eventListStore, paramsStore } from "@mikefeng110808/lc-logic-data-manage";
 import { containerModules } from './editor';
 import { ComboModuleInstance } from '@mikefeng110808/lc-logic-comp';
+import { inParams } from '@mikefeng110808/lc-logic-in-out';
 
 export class AllModuleInstance extends ModuleInstance {
   children: AllModuleInstance[];
@@ -51,6 +52,9 @@ export let saveFromConfig = () => {
 
   var eventValue = eventList.getList().map(item => item.opt);
   eventListStore.setData(eventValue)
+
+  var paramsValue = inParams.getValue()
+  paramsStore.setData(paramsValue)
 };
 export let restoreFromConfig = () => {
   var apiValue: any = apiListStore.getData() || []
@@ -60,4 +64,9 @@ export let restoreFromConfig = () => {
   var eventValue: any = eventListStore.getData() || []
   eventList.clear();
   eventList.save(eventValue)
+
+  
+  var paramsValue: any = paramsStore.getData()
+  inParams.clear();
+  inParams.save(paramsValue)
 };

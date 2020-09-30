@@ -189,7 +189,7 @@ export class ObjectVueUI extends VueUI {
 export class MulSelectVueUI extends VueUI {
   constructor(params: SingleUIPayload) {
     super(params);
-    this.props.configVisible = params.props ? params.props.configVisible || [] : [];
+    this.props.configVisible = params.props ? typeof params.props.configVisible =='undefined' ? true : params.props.configVisible : true;
     this.props.optionsArray = params.props ? params.props.optionsArray || [] : [];
     this.setValue(this.value || []);
     if (this.props.optionsArray.length == 0) {
@@ -230,7 +230,7 @@ export class MulSelectVueUI extends VueUI {
 export class SelectVueUI extends VueUI {
   constructor(params: SingleUIPayload) {
     super(params);
-    this.props.configVisible = params.props ? params.props.configVisible || [] : [];
+    this.props.configVisible = params.props ? typeof params.props.configVisible =='undefined' ? true : params.props.configVisible : true;
     this.props.optionsArray = params.props ? params.props.optionsArray || [] : [];
     this.setValue(this.value || '');
     if (this.props.optionsArray.length == 0) {

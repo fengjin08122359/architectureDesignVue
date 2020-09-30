@@ -109,9 +109,22 @@ class CompListStore {
 
 
 
+class ParamsStore {
+  constructor () {
+
+  }
+  setData (value:any) {
+    storage.set('ParamsStore', value)
+  }
+  getData () {
+    return storage.get('ParamsStore')
+  }
+}
+
 export let apiStore = new ApiStore()
 export let componentStore = new ComponentStore()
 export let apiListStore = new ApiListStore()
 export let eventListStore = new EventListStore()
 export let pageStore = new PageStore()
 export let compListStore = new CompListStore()
+export let paramsStore = new ParamsStore()

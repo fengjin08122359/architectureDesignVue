@@ -1,18 +1,18 @@
 {
-  "name": "@mikefeng110808/lc-logic-edit",
+  "name": "@mikefeng110808/lc-logic-extend",
   "version": "1.0.2-alpha.23",
-  "description": "@mikefeng110808/lc-logic-edit",
+  "description": "@mikefeng110808/lc-logic-extend",
   "main": "index.js",
-  "module": "dist/lc-logic-edit.esm-bundler.js",
-  "types": "dist/lc-logic-edit.d.ts",
-  "unpkg": "dist/lc-logic-edit.global.js",
+  "module": "dist/lc-logic-extend.esm-bundler.js",
+  "types": "dist/lc-logic-extend.d.ts",
+  "unpkg": "dist/lc-logic-extend.global.js",
   "files": [
     "index.js",
     "dist"
   ],
   "sideEffects": false,
   "buildOptions": {
-    "name": "lcUiGenerator",
+    "name": "lcLogicExtend",
     "formats": [
       "esm-bundler",
       "cjs",
@@ -23,8 +23,9 @@
   "author": "Mike Feng",
   "license": "MIT",
   "dependencies": {
-    "@mikefeng110808/logic": "1.0.2-alpha.23",
-    "@mikefeng110808/basic": "1.0.2-alpha.23"
+    "@mikefeng110808/lc-logic": "1.0.2-alpha.23",
+    "@mikefeng110808/vue-ui": "1.0.2-alpha.23",
+    "@mikefeng110808/vue-instance": "1.0.2-alpha.23"
   },
   "devDependencies": {
     "lodash": "^4.17.15"

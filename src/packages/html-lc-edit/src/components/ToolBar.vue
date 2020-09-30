@@ -29,11 +29,8 @@
 
     <el-switch v-model="editorInstance.isRelative"></el-switch>
     <el-color-picker v-model="editorInstance.borderColor"></el-color-picker>
-    <el-row>
-      <el-col>
-        <el-button class="toolTitle" @click="visible = true">api列表, 事件列表</el-button>
-      </el-col>
-    </el-row>
+    <ToolBarConfig></ToolBarConfig>
+    <SystemConfig></SystemConfig>
     <el-button-group>
     <el-button @click="restoreFromConfig()">restoreFromConfig</el-button>
     <el-button @click="restoreFromEdit()">restoreFromEdit</el-button>
@@ -44,18 +41,6 @@
     <el-button @click="saveFromEdit()">saveFromEdit</el-button>
     </el-button-group>
     
-    <el-drawer :visible.sync="visible" direction="rtl" :append-to-body="true">
-      <div class="drawer-section">
-        <el-tabs v-model="activeTab">
-          <el-tab-pane label="api列表" name="ApiList">
-            <ApiList></ApiList>
-          </el-tab-pane>
-          <el-tab-pane label="事件列表" name="EventList">
-            <EventList></EventList>
-          </el-tab-pane>
-        </el-tabs>
-      </div>
-    </el-drawer>
   </div>
 </template>
 <script lang="ts">
@@ -75,10 +60,10 @@ import {
   setComboModule
 } from "../sdk";
 import DragCol from "./DragCol.vue";
-import ApiList from "./ToolBar/ApiList.vue";
-import EventList from "./ToolBar/EventList.vue";
+import ToolBarConfig from "./ToolBar/ToolBarConfig.vue";
+import SystemConfig from "./SystemConfig/SystemConfig.vue";
 
-@Component({ components: { DragCol, ApiList, EventList } })
+@Component({ components: { DragCol, ToolBarConfig, SystemConfig } })
 export default class ToolBar extends Vue {
   basicModules = basicModules;
   continerModules = continerModules;
@@ -89,8 +74,6 @@ export default class ToolBar extends Vue {
   restoreFromEdit = restoreFromEdit
   restoreFromConfig = restoreFromConfig
   combList:CombList = combList
-  visible = false
-  activeTab = "ApiList"
   dragModule(e, target) {
     e.dataTransfer.effectAllowed = 'all'
     e.dataTransfer.dropEffect = 'copy'

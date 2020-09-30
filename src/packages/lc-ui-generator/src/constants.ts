@@ -12,6 +12,11 @@ export let apiParams = [
     props: { label: "名称" }
   },
   {
+    type: "input",
+    key: "url",
+    props: { label: "地址" }
+  },
+  {
     type: "select",
     key: "config",
     props: {

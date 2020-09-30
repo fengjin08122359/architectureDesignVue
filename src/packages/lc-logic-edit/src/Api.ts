@@ -60,6 +60,7 @@ export class Api {
     this.opt.name = val.name || "";
     this.opt.getParam = val.getParam || {};
     this.opt.postParam = val.postParam || {};
+    this.opt.url = val.url || ''
 
     // this.uiList.setValue(val)
   }
@@ -71,6 +72,7 @@ export interface ApiPayload {
   getParam: [];
   postParam: [];
   id?: string;
+  url:string;
 }
 
 export class ApiList {
@@ -101,7 +103,8 @@ export class ApiList {
         config: "get",
         name: "",
         getParam: [],
-        postParam: []
+        postParam: [],
+        url: ''
       });
       api.setValue(item);
     });

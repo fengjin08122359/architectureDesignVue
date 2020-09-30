@@ -1,11 +1,11 @@
 <template>
   <div id="app">
-    <App ></App>
+    <App></App>
   </div>
 </template>
 
 <script>
-import {App} from '../packages/html-lc-edit/src'
+import {App} from '../packages/html-lc-extend-logic/src'
 export default {
   components: {App},
   mounted () {
